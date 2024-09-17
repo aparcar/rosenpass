@@ -134,10 +134,10 @@ pub const PEER_COOKIE_VALUE_EPOCH: Timing = 120.0;
 // decryption for a second epoch
 pub const BISCUIT_EPOCH: Timing = 300.0;
 
-// Retransmission pub constants; will retransmit for up to _ABORT ms; starting with a delay of
-// _DELAY_BEG ms and increasing the delay exponentially by a factor of
-// _DELAY_GROWTH up to _DELAY_END. An additional jitter factor of ±_DELAY_JITTER
-// is added.
+// Retransmission pub constants; will retransmit for up to _ABORT seconds;
+// starting with a delay of _DELAY_BEGIN seconds and increasing the delay
+// exponentially by a factor of _DELAY_GROWTH up to _DELAY_END.
+// An additional jitter factor of ±_DELAY_JITTER is added.
 pub const RETRANSMIT_ABORT: Timing = 120.0;
 pub const RETRANSMIT_DELAY_GROWTH: Timing = 2.0;
 pub const RETRANSMIT_DELAY_BEGIN: Timing = 0.5;
