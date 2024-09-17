@@ -63,6 +63,7 @@ uds = { workspace = true, optional = true, features = ["mio_1xx"] }
 
 [build-dependencies]
 anyhow = { workspace = true }
+clap_mangen = "0.2.23"
 
 [dev-dependencies]
 criterion = { workspace = true }
