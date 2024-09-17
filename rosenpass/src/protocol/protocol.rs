@@ -1465,15 +1465,17 @@ impl IniHsPtr {
             .as_mut()
             .with_context(|| format!("No current handshake for peer {:?}", self.peer()))?;
         // Base delay, exponential increase, ±50% jitter
-        ih.tx_retry_at = tb.now()
-            + RETRANSMIT_DELAY_BEGIN
-                * RETRANSMIT_DELAY_GROWTH.powf(
-                    (RETRANSMIT_DELAY_END / RETRANSMIT_DELAY_BEGIN)
-                        .log(RETRANSMIT_DELAY_GROWTH)
-                        .min(ih.tx_count as f64),
-                )
-                * RETRANSMIT_DELAY_JITTER
-                * (rand::random::<f64>() + 1.0); // TODO: Replace with the rand crate
+        let delay = RETRANSMIT_DELAY_BEGIN
+            * RETRANSMIT_DELAY_GROWTH.powf(
+                (RETRANSMIT_DELAY_END / RETRANSMIT_DELAY_BEGIN)
+                    .log(RETRANSMIT_DELAY_GROWTH)
+                    .min(ih.tx_count as f64),
+            )
+            * RETRANSMIT_DELAY_JITTER
+            * (rand::random::<f64>() + 1.0); // TODO: Replace with the rand crate
+
+        log::debug!("Scheduled retransmission in {} seconds", delay);
+        ih.tx_retry_at = tb.now() + delay;
         ih.tx_count += 1;
         Ok(())
     }
