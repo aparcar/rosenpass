@@ -3,29 +3,30 @@ use std::path::PathBuf;
 use clap::Args;
 use clap::{Parser, Subcommand};
 
-#[derive(Debug, Parser)]
+#[derive(Parser)]
 #[command(author, version, about)]
 #[command(name = "rosenpass")]
-struct Cli {
+pub struct Cli {
     #[command(subcommand)]
-    command: Option<Commands>,
+    pub command: Commands,
 }
 
-#[derive(Debug, Subcommand)]
+#[derive(Subcommand)]
 pub enum Commands {
     ExchangeConfig(ExchangeConfig),
     GenConfig(GenConfig),
 }
 
-#[derive(Debug, Args)]
+#[derive(Args)]
 pub struct ExchangeConfig {
     #[clap(short, long)]
     pub config_file: PathBuf,
 }
 
-#[derive(Debug, Args)]
+#[derive(Args)]
 pub struct GenConfig {
     #[clap(short, long)]
     pub config_file: PathBuf,
+    #[clap(short, long)]
     pub force: bool,
 }

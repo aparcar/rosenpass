@@ -1,11 +1,9 @@
-use anyhow::bail;
-use anyhow::Result;
+use clap::CommandFactory;
 use std::env;
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
 use std::path::PathBuf;
-use std::process::Command;
 
 mod cli {
     include!("src/cli.rs");
@@ -23,7 +21,7 @@ mod cli {
 
 /// Generates the manual page
 fn generate_man() -> String {
-    let mut cmd = cli::Cli::command();
+    let cmd = cli::Cli::command();
     let base_dir = Path::new("/tmp/rosenpass/");
 
     clap_mangen::generate_to(cmd.clone(), &base_dir).unwrap();
