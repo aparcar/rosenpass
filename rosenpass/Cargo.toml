@@ -60,11 +60,14 @@ heck = { workspace = true, optional = true }
 command-fds = { workspace = true, optional = true }
 rustix = { workspace = true }
 uds = { workspace = true, optional = true, features = ["mio_1xx"] }
+clap-verbosity-flag = "2.2.1"
 
 [build-dependencies]
 anyhow = { workspace = true }
 clap_mangen = "0.2.23"
 clap = { workspace = true }
+log = { workspace = true }
+clap-verbosity-flag = "2.2.1"
 
 
 [dev-dependencies]

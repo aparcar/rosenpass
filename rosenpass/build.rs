@@ -24,7 +24,7 @@ fn generate_man() -> String {
     let cmd = cli::Cli::command();
     let base_dir = Path::new("/tmp/rosenpass/");
 
-    clap_mangen::generate_to(cmd.clone(), &base_dir).unwrap();
+    clap_mangen::generate_to(cmd.clone(), base_dir).unwrap();
 
     // This function is purposely stupid and redundant
 
