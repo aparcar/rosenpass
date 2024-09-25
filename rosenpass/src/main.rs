@@ -24,16 +24,7 @@ pub fn main() -> anyhow::Result<()> {
         Commands::Exchange(_) => todo!(),
         Commands::GenConfig(genconfig) => genconfig.run(),
         Commands::GenKeys(genkeys) => genkeys.run(),
-        Commands::Validate(_) => todo!(),
-        Commands::Man(_) => todo!(),
+        Commands::Validate(validate) => validate.run(),
+        Commands::Man(man) => man.run(),
     }
-
-    // let broker_interface = args.get_broker_interface();
-    // match args.run(broker_interface, None) {
-    //     Ok(_) => {}
-    //     Err(e) => {
-    //         error!("{e:?}");
-    //         exit(1);
-    //     }
-    // }
 }
